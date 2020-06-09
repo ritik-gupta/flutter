@@ -5,16 +5,16 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var qIndex = 0;
+class _MyAppState extends State<MyApp> {
+  var _qIndex = 0;
 
-  void ansQues(){
+  void _ansQues(){
     setState(() {
-      qIndex += 1;  
+      _qIndex += 1;  
     });
   }
   @override
@@ -31,18 +31,18 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Text(questions[qIndex]),
+            Text(questions[_qIndex]),
             RaisedButton(
               child: Text('Ans1'),
-              onPressed: ansQues,
+              onPressed: _ansQues,
               ),
             RaisedButton(
               child: Text('Ans2'),
-              onPressed: ansQues,
+              onPressed: _ansQues,
               ),
             RaisedButton(
               child: Text('Ans3'),
-              onPressed: ansQues,
+              onPressed: _ansQues,
               ),
           ],
         )

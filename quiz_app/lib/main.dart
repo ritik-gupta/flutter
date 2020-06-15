@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './questions.dart';
-import './answers.dart';
+import './quiz.dart';
+import './result.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,20 +13,20 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _qIndex = 0;
-  static const questions = [
-      {
-        'questionText': 'What\'s your favourite colour?',
-        'answers': ['Black', 'Blue', 'Red', 'Green']
-      },
-      {
-        'questionText': 'What\'s your favourite animal?',
-        'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
-      },
-      {
-        'questionText': 'What\'s your favourite season?',
-        'answers': ['Summer', 'Winter', 'Rainy', 'Spring'],
-      },
-    ];
+  static const _questions = [
+    {
+      'questionText': 'What\'s your favourite colour?',
+      'answers': ['Black', 'Blue', 'Red', 'Green']
+    },
+    {
+      'questionText': 'What\'s your favourite animal?',
+      'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
+    },
+    {
+      'questionText': 'What\'s your favourite season?',
+      'answers': ['Summer', 'Winter', 'Rainy', 'Spring'],
+    },
+  ];
 
   void _ansQues() {
     setState(() {
@@ -37,23 +37,17 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('This is an AppBar'),
-          ),
-          body: _qIndex < questions.length
-              ? Column(
-                  children: <Widget>[
-                    Question(questions[_qIndex]['questionText']),
-                    ...(questions[_qIndex]['answers'] as List<String>)
-                        .map((answer) {
-                      return Answers(_ansQues, answer);
-                    }).toList()
-                  ],
-                )
-              : Center(
-                  child: Text("Finished!"),
-                )),
-    );
+        home: Scaffold(
+      appBar: AppBar(
+        title: Text('This is an AppBar'),
+      ),
+      body: _qIndex < _questions.length
+          ? Quiz(
+              ansQues: _ansQues,
+              qIndex: _qIndex,
+              questions: _questions,
+            )
+          : Result(),
+    ));
   }
 }

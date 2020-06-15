@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _qIndex = 0;
+  var _totalScore = 0;
   static const _questions = [
     {
       'questionText': 'Ctrl, Shift and Alt are called ____ keys?',
@@ -91,7 +92,7 @@ class _MyAppState extends State<MyApp> {
       'answers': [
         {'text': 'Assembly language', 'score': 0},
         {'text': 'Spaghetti code', 'score': 0},
-        {'text': 'Source code', 'score': 0}
+        {'text': 'Source code', 'score': 0},
         {'text': 'Machine language', 'score': 10},
       ]
     },
@@ -106,7 +107,8 @@ class _MyAppState extends State<MyApp> {
     },
   ];
 
-  void _ansQues() {
+  void _ansQues(int score) {
+    _totalScore += score;
     setState(() {
       _qIndex += 1;
     });
@@ -125,7 +127,7 @@ class _MyAppState extends State<MyApp> {
               qIndex: _qIndex,
               questions: _questions,
             )
-          : Result(),
+          : Result(_totalScore),
     ));
   }
 }

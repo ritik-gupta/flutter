@@ -43,7 +43,8 @@ class _MyAppState extends State<MyApp> {
       ]
     },
     {
-      'questionText': '________ is the process of dividing the disk into tracks and sectors',
+      'questionText':
+          '________ is the process of dividing the disk into tracks and sectors',
       'answers': [
         {'text': 'Tracking', 'score': 0},
         {'text': 'Formatting', 'score': 10},
@@ -52,7 +53,8 @@ class _MyAppState extends State<MyApp> {
       ]
     },
     {
-      'questionText': '_____are attempts by individuals to obtain confidential information from you by falsifying their identity',
+      'questionText':
+          '_____are attempts by individuals to obtain confidential information from you by falsifying their identity',
       'answers': [
         {'text': 'Phishing trips', 'score': 0},
         {'text': 'Phishing scams', 'score': 10},
@@ -107,6 +109,13 @@ class _MyAppState extends State<MyApp> {
     },
   ];
 
+  void _resetQuiz() {
+    setState(() {
+      _qIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   void _ansQues(int score) {
     _totalScore += score;
     setState(() {
@@ -127,7 +136,7 @@ class _MyAppState extends State<MyApp> {
               qIndex: _qIndex,
               questions: _questions,
             )
-          : Result(_totalScore),
+          : Result(_totalScore, _resetQuiz),
     ));
   }
 }

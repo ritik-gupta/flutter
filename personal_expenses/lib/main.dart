@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final DateFormat formatted = DateFormat();
   final List<Transaction> transactions = [
     Transaction(
       id:'t1',
@@ -57,7 +59,7 @@ class MyHomePage extends StatelessWidget {
                         border: Border.all(color: Colors.purple, width: 2)),
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      txn.amount.toString(),
+                      '₹ ${txn.amount}',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -76,7 +78,7 @@ class MyHomePage extends StatelessWidget {
                         )
                         ),
                       Text(
-                        txn.date.toString(),
+                        formatted.format(txn.date),
                         style: TextStyle(
                           color: Colors.grey
                         ),

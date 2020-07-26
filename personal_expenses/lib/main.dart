@@ -18,13 +18,13 @@ class MyHomePage extends StatelessWidget {
   final DateFormat formatted = DateFormat();
   final List<Transaction> transactions = [
     Transaction(
-      id:'t1',
+      id: 't1',
       title: 'Groceries',
       amount: 69.99,
       date: DateTime.now(),
     ),
     Transaction(
-      id:'t2',
+      id: 't2',
       title: 'Shoes',
       amount: 299.99,
       date: DateTime.now(),
@@ -43,6 +43,28 @@ class MyHomePage extends StatelessWidget {
             child: Card(
               child: Text('CHART!'),
               elevation: 5,
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                  ),
+                  FlatButton(
+                    child: Text('Add Transaction'),
+                    textColor: Colors.purple,
+                    onPressed: () {},
+                  )
+                ],
+              ),
             ),
           ),
           Column(
@@ -65,25 +87,21 @@ class MyHomePage extends StatelessWidget {
                         fontSize: 20,
                         color: Colors.purple,
                       ),
-                      ),
+                    ),
                   ),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        txn.title,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(txn.title,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            )),
+                        Text(
+                          formatted.format(txn.date),
+                          style: TextStyle(color: Colors.grey),
                         )
-                        ),
-                      Text(
-                        formatted.format(txn.date),
-                        style: TextStyle(
-                          color: Colors.grey
-                        ),
-                      )
-                  ])
+                      ])
                 ],
               ));
             }).toList(),

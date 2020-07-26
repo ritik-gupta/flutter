@@ -14,7 +14,20 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [];
+  final List<Transaction> transactions = [
+    Transaction(
+      id:'t1',
+      title: 'Groceries',
+      amount: 69.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id:'t2',
+      title: 'Shoes',
+      amount: 299.99,
+      date: DateTime.now(),
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +71,7 @@ class MyHomePage extends StatelessWidget {
                       Text(
                         txn.title,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         )
                         ),
